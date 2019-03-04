@@ -1,3 +1,7 @@
+//ENV VARIABLES
+const dotenv = require('dotenv');
+dotenv.config();
+
 //SERVER CONFIGURATION
 var express = require('express'),
   app = express(),
@@ -6,9 +10,10 @@ var express = require('express'),
   Character = require('./api/models/characterModel'), //LOAD MODEL
   bodyParser = require('body-parser');
 
+
 // mongoose CONNECT TO DB
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://nds_user:Nearshor3.@ds021326.mlab.com:21326/characters');
+mongoose.connect(process.env.DB_URL);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
