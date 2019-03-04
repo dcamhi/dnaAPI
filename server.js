@@ -11,15 +11,17 @@ var express = require('express'),
   bodyParser = require('body-parser');
 
 
-// mongoose CONNECT TO DB
+// MONGOOSE CONNECTION TO DB
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB_URL);
 
+//BODY PARSER FOR REQUESTS
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./api/routes/characterRoutes'); //importing route
-routes(app); //register the route
+//IMPORT AND REGISTER ROUTES
+var routes = require('./api/routes/characterRoutes'); 
+routes(app); 
 
 app.listen(port);
 
@@ -28,5 +30,6 @@ app.use(function(req, res) {
   res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
+//INIT MESSAGE
 console.log('characters RESTful API server on: ' + port);
 
