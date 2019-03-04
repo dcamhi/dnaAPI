@@ -1,0 +1,22 @@
+{
+  "name": "workycharactersapi",
+  "version": "1.0.0",
+  "description": "RESTful charactersAPI",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "mocha test/*.js --timeout 15000"
+  },
+  "author": "David Camhi de la Tejera",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.16"
+  }
+}
