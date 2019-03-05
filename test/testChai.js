@@ -7,12 +7,12 @@ chai.use(chaiHttp);
 const url= 'http://localhost:3000';
 var inserted_id = 0;
 
-//CREATE A NEW CHARACTER
+// CREATE A NEW CHARACTER
 describe('Insert a character: ',()=>{
 	it('should insert a character', (done) => {
 		chai.request(url)
 			.post('/api/v1/characters')
-			.send({title: "David Camhi", info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
+			.send({title: "David Camhi",details:{ Personal : {"Nationality":"Mexican","Age":"26"}}, info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
 			.end( function(err,res){
                 console.log(res.body)
                 inserted_id = res.body._id;
@@ -22,12 +22,12 @@ describe('Insert a character: ',()=>{
 	});
 });
 
-//CREATE NEW CHARACTER (WITHOUT TITLE)
+// CREATE NEW CHARACTER (WITHOUT TITLE)
 describe('Insert a character with error: ',()=>{
 	it('should receive an error', (done) => {
 		chai.request(url)
             .post('/api/v1/characters')
-			.send({info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
+			.send({details:{ Personal : {"Nationality":"Mexican","Age":"26"}},info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
 			.end( function(err,res){
 				console.log(res.body)
 				expect(res).to.have.status(500);
@@ -36,7 +36,7 @@ describe('Insert a character with error: ',()=>{
 	});
 });
 
-//GET ALL CHARACTERS
+// GET ALL CHARACTERS
 describe('get all characters: ',()=>{
 	it('should get all characters', (done) => {
 		chai.request(url)
@@ -49,7 +49,7 @@ describe('get all characters: ',()=>{
 	});
 });
 
-//GET SPECIFIC CHARACTER
+// GET SPECIFIC CHARACTER
 describe('get the character with previously inserted id',()=>{
 	it('should get the country with id:'+inserted_id, (done) => {
 		chai.request(url)
@@ -63,7 +63,7 @@ describe('get the character with previously inserted id',()=>{
 	});
 });
 
-//UPDATE SPECIFIC CHARACTER
+// UPDATE SPECIFIC CHARACTER
 describe('update the title of previously inserted character ',()=>{
 	it('should update a specific title of character', (done) => {
 		chai.request(url)
@@ -78,7 +78,7 @@ describe('update the title of previously inserted character ',()=>{
 	});
 });
 
-//DELETE A CHARACTER
+// DELETE A CHARACTER
 describe('delete the character with previously inserted id'+inserted_id,()=>{
 	it('should delete the character', (done) => {
 		chai.request(url)

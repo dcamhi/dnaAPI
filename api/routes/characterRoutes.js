@@ -1,9 +1,10 @@
 'use strict';
 module.exports = function(app) {
-	//INCLUDE CONTROLLER
+  
+// INCLUDE CONTROLLER
   var characters = require('../controllers/charactersController');	
 
-	// DEFINE CHARACTER ROUTES
+// DEFINE CHARACTER ROUTES
 	var version = '/api/v1'
   app.route(version+'/characters')
     .get(characters.list_all_characters)

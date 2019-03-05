@@ -3,7 +3,7 @@
 
 ## API con conexión a mongoDB 
 
-El api está construido en JavaScript utilizando NodeJS. La base de datos es una basada en documentos, actualmente mongodb en mlab.com
+El api está construido en JavaScript utilizando NodeJS. El almacenamiento es con una base de datos basada en documentos, MongoDB. Para imbplementarla, se utilizó mlab.com, una base de datos como servicio para MongoDB.
 
 ##### Requerimientos
 
@@ -25,21 +25,32 @@ El api está construido en JavaScript utilizando NodeJS. La base de datos es una
 ```
 
 ##### Instalación
+Clonar el repositorio e instalar todas las dependencias de npm
 
 ```powershell
 git clone https://github.com/dcamhi/workyCharactersAPI.git
 cd workyCharactersAPI
-touch .env
 npm install
-npm start
 ```
 
-##### .env
-Para que el API funcione correctamente, es necesario agregar las siguientes variables al archivo .env en el cual se especifica un puerto y la liga de conexión a la base de datos de la siguiente manera:
+##### Configuración
+
+Para que el API funcione correctamente, es necesario crear un archivo de configuración (.env) en el cual se especifican las variables de ambiente.
 
 ```powershell
+touch .env
+nano .env
+
+
 PORT=3000
 DB_URL='mongodb://<user>:<pwd>@ds021326.mlab.com:21326/<collection>'
+```
+Las variables definidas en el archivo .env especifican un puerto y un endpoint de conexión a la base de datos. Obtener los datos requeridos de la base de datos creada en mlab.
+
+##### Iniciar el API
+
+```powershell
+npm start
 ```
 
 ## Se tienen las siguientes funcionalidades con sus respectivos endpoints:

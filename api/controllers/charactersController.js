@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
   Character = mongoose.model('Characters');
 
-  //GET ALL CHARACTERS
+// GET ALL CHARACTERS
 exports.list_all_characters = function(req, res) {
   Character.find({}, function(err, character) {
     if (err)
@@ -12,7 +12,7 @@ exports.list_all_characters = function(req, res) {
   });
 };
 
-//CREATE NEW CHARACTER
+// CREATE NEW CHARACTER
 exports.create_a_character = function(req, res) {
   var new_character = new Character(req.body);
   if (req.body.title==null){
@@ -26,7 +26,7 @@ exports.create_a_character = function(req, res) {
   }
 };
 
-//GET A SPECIFIC CHARACTER
+// GET A SPECIFIC CHARACTER
 exports.read_a_character = function(req, res) {
   Character.findById(req.params.characterId, function(err, character) {
     if (err)
@@ -35,7 +35,7 @@ exports.read_a_character = function(req, res) {
   });
 };
 
-//UPDATE CHARACTER
+// UPDATE CHARACTER
 exports.update_a_character = function(req, res) {
   Character.findOneAndUpdate({_id: req.params.characterId}, req.body, {new: true}, function(err, character) {
     if (err)
@@ -44,7 +44,7 @@ exports.update_a_character = function(req, res) {
   });
 };
 
-//DELETE A CHARACTER
+// DELETE A CHARACTER
 exports.delete_a_character = function(req, res) {
   Character.remove({
     _id: req.params.characterId

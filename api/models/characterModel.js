@@ -14,6 +14,9 @@ var CharacterSchema = new Schema({
   },
   info: {
     type: [{}]
+  },
+  details: {
+    type: [{}]
   }
 });
 
