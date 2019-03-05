@@ -78,13 +78,21 @@ POST /api/v1/characters/
 ```
 {
     "title": "Title",
-    "info":{
+    "info":[{
         "Attribute":
             {"1":"Paragraph 1", "2":"Paragraph2"}
-        },
+        },{
          "Attribute 2":
             {"1":"Paragraph 1", "2":"Paragraph2"}
-        }
+        }],
+    "details":[{
+        "details1":
+            {"key":"detail", "key":"detail"}
+        },{
+            "details 2":
+            {"key":"detail 1", "key":"detail"}
+        }]
+
 }
 ```
 
@@ -97,13 +105,21 @@ PUT /api/v1/characters/<_id>
 ```
 {
     "title": "Title",
-    "info":{
+    "info":[{
         "Attribute":
             {"1":"Paragraph 1", "2":"Paragraph2"}
-        },
+        },{
          "Attribute 2":
             {"1":"Paragraph 1", "2":"Paragraph2"}
-        }
+        }],
+    "details":[{
+        "details1":
+            {"key":"detail", "key":"detail"}
+        },{
+            "details 2":
+            {"key":"detail 1", "key":"detail"}
+        }]
+
 }
 ```
 
