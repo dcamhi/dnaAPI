@@ -7,20 +7,22 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3000,
   mongoose = require('mongoose'),
-  Character = require('./api/models/characterModel'), //LOAD MODEL
+  Stats = require('./api/models/statsModel'), //LOAD MODEL
+  Dna = require('./api/models/dnaModel'), //LOAD MODEL
+
   bodyParser = require('body-parser');
 
 
 // MONGOOSE CONNECTION TO DB
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.DB_URL,{ useNewUrlParser: true });
 
 // BODY PARSER FOR REQUESTS
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // IMPORT AND REGISTER ROUTES
-var routes = require('./api/routes/characterRoutes'); 
+var routes = require('./api/routes/dnaRoutes'); 
 routes(app); 
 
 app.listen(port);
@@ -31,5 +33,5 @@ app.use(function(req, res) {
 });
 
 // INIT MESSAGE
-console.log('characters RESTful API server on: ' + port);
+console.log('DNA RESTful API server on: ' + port);
 

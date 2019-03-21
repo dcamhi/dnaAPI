@@ -1,7 +1,7 @@
 {
-  "name": "workycharactersapi",
+  "name": "dnaapi",
   "version": "1.0.0",
-  "description": "RESTful charactersAPI",
+  "description": "RESTful dnaPI",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
