@@ -219,7 +219,33 @@ El output del script debería de mostrar en la terminal el número de pruebas qu
 
   4 passing (991ms)
 ```
-<br>
 
+## Deploy del API en Google App Engine
+El servicio de App Engine de Google sirve para hospedar aplicaciones escalables en una plataforma serverless.
+Para ello se utiliza el archivo app.yaml en el cual se especifica el ambiente y la tecnología a utilizar por la aplicación:
+```
+env: flex
+runtime: nodejs
+```
+Para hacer el deploy:
+```
+1. Crear proyecto en GCP.
+2. Habilitar cuenta de facturación al proyecto.
+3. Descargar e instalar el SDK de Google Cloud Platform de https://cloud.google.com/sdk/
+
+En la terminal:
+4. Autenticarse con el SDK: gcloud auth login
+5. Obtener la lista de proyectos: gcloud projects list
+6. Obtener el project_id del proyecto deseado
+7. Utilizar el proyecto a utilizar: gcloud config set project <project_id>
+8. gcloud app deploy
+9. Seguir instrucciones del comando. 
+Nota: (Puede tardar varios minutos)
+```
+
+Al final el output nos dará la url donde se encuentra la aplicación.
+
+Para más información consultar [la documentación de Google](https://cloud.google.com/appengine/docs/standard/nodejs/building-app/)
+<br>
 
 Para dudas contactar a [david.camhi26@gmail.com](mailto:david.camhi26@gmail.com)
