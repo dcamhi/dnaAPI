@@ -9,19 +9,19 @@ var mongoose2 = require('mongoose'),
 
 // GET STATS
 exports.get_stats = function(req, res) {
-  Stats.findOne({}, function(err, character) {
+  Stats.findOne({}, function(err, stats) {
     if (err)
       res.send(err);
-    res.status(200).json(character);
+    res.status(200).json(stats);
   });
 };
 
 // GET ALL DNA RECORDS
 exports.list_all_dna = function(req, res) {
-  Dna.find({}, function(err, character) {
+  Dna.find({}, function(err, dna) {
     if (err)
       res.send(err);
-    res.status(200).json(character);
+    res.status(200).json(dna);
   });
 };
 

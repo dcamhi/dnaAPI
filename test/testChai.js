@@ -36,7 +36,7 @@ describe('Validate a DNA without mutation: ',()=>{
 
 // GET ALL STORED DNA 
 describe('get all dna with mutation: ',()=>{
-	it('should get all characters', (done) => {
+	it('should get all stored dna', (done) => {
 		chai.request(url)
 			.get('/api/v1/mutation')
 			.end( function(err,res){
@@ -49,7 +49,7 @@ describe('get all dna with mutation: ',()=>{
 
 // GET STADISTICS
 describe('get all dna with mutation: ',()=>{
-	it('should get all characters', (done) => {
+	it('should get stats', (done) => {
 		chai.request(url)
 			.get('/api/v1/stats')
 			.end( function(err,res){
