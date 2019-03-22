@@ -1,4 +1,4 @@
-# NodeJS CharactersAPI
+# NodeJS DNA API
 
 
 ## API con conexión a mongoDB 
@@ -28,8 +28,8 @@ El api está construido en JavaScript utilizando NodeJS. El almacenamiento es co
 Clonar el repositorio e instalar todas las dependencias de npm
 
 ```powershell
-git clone https://github.com/dcamhi/workyCharactersAPI.git
-cd workyCharactersAPI
+git clone https://github.com/dcamhi/dnaAPI
+cd dnaAPI
 npm install
 ```
 
@@ -55,79 +55,31 @@ npm start
 
 ## Se tienen las siguientes funcionalidades con sus respectivos endpoints:
 
-### PERSONAJES
+### DNA
 
-##### Obtener todos los personajes
+##### Obtener los ADN con Mutaciones
 
 ```powershell
-GET /api/v1/characters
+GET /api/v1/mutation/
 ```
 
-##### Obtener el personaje con el id especificado
+##### Validar e insertar el DNA 
 
 ```powershell
-GET /api/v1/characters/<_id>
-```
-
-##### Insertar un nuevo personaje
-
-```powershell
-POST /api/v1/characters/ 
+POST /api/v1/muation/ 
 ```
 ###### BODY
 ```
 {
-    "title": "Title",
-    "info":[{
-        "Attribute":
-            {"1":"Paragraph 1", "2":"Paragraph2"}
-        },{
-         "Attribute 2":
-            {"1":"Paragraph 1", "2":"Paragraph2"}
-        }],
-    "details":[{
-        "details1":
-            {"key":"detail", "key":"detail"}
-        },{
-            "details 2":
-            {"key":"detail 1", "key":"detail"}
-        }]
-
+	"dna": ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]
 }
 ```
+### ESTADÍSTICAS
 
-##### Actualizar el personaje especificado
-
-```powershell
-PUT /api/v1/characters/<_id> 
-```
-###### BODY
-```
-{
-    "title": "Title",
-    "info":[{
-        "Attribute":
-            {"1":"Paragraph 1", "2":"Paragraph2"}
-        },{
-         "Attribute 2":
-            {"1":"Paragraph 1", "2":"Paragraph2"}
-        }],
-    "details":[{
-        "details1":
-            {"key":"detail", "key":"detail"}
-        },{
-            "details 2":
-            {"key":"detail 1", "key":"detail"}
-        }]
-
-}
-```
-
-
-##### Eliminar el personaje especificado
+##### Obtener las estadísticas de mutaciones de ADN
 
 ```powershell
-DELETE /api/v1/characters/<_id>
+GET /api/v1/stats/
 ```
 
 ## Se creó un script utilizando mocha y chai para realizar pruebas unitarias a cada función
