@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-//Define model with Dna parameters
+//Define model with Stats parameters
 var StatsSchema = new Schema({
 	count_no_mutation: {
     type: Number

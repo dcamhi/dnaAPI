@@ -43,7 +43,7 @@ nano .env
 
 
 PORT=3000
-DB_URL='mongodb://<user>:<pwd>@ds021326.mlab.com:21326/<collection>'
+DB_URL='mongodb://<user>:<pwd>@ds021326.mlab.com:21326/<db_name>'
 ```
 Las variables definidas en el archivo .env especifican un puerto y un endpoint de conexión a la base de datos. Obtener los datos requeridos de la base de datos creada en mlab.
 

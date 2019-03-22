@@ -7,40 +7,38 @@ chai.use(chaiHttp);
 const url= 'http://localhost:3000';
 var inserted_id = 0;
 
-// CREATE A NEW CHARACTER
-describe('Insert a character: ',()=>{
-	it('should insert a character', (done) => {
+// DNA WITH MUTATION
+describe('Validate a DNA with mutation: ',()=>{
+	it('Should return true, insert the DNA sequence if it doesnt exist and increment the count', (done) => {
 		chai.request(url)
-			.post('/api/v1/characters')
-			.send({title: "David Camhi",details:{ Personal : {"Nationality":"Mexican","Age":"26"}}, info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
+			.post('/api/v1/mutation')
+			.send({dna: ["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"]})
 			.end( function(err,res){
-                console.log(res.body)
-                inserted_id = res.body._id;
-				expect(res).to.have.status(201);
+				expect(res).to.have.status(200);
 				done();
 			});
 	});
 });
 
-// CREATE NEW CHARACTER (WITHOUT TITLE)
-describe('Insert a character with error: ',()=>{
-	it('should receive an error', (done) => {
+// DNA WITHOUT MUTATION
+describe('Validate a DNA without mutation: ',()=>{
+	it('Should return Forbidden and increment the count of dna without mutation', (done) => {
 		chai.request(url)
-            .post('/api/v1/characters')
-			.send({details:{ Personal : {"Nationality":"Mexican","Age":"26"}},info:{ Background : {"1":"Mechatronics Engineer from IPN","2":"Fast learner, passionate, and dedicated."}, Appearance: {"1":"Born in January 1993 in Mexico City"},Abilities:{"1":"David learns new things in a matter of hours, and he can make even the most serious person laugh."}}})
+			.post('/api/v1/mutation')
+			.send({dna: ["ATGCGA","CAGTGC","TTATTT","AGACGG","GCGTCA","TCACTG"]})
 			.end( function(err,res){
-				console.log(res.body)
-				expect(res).to.have.status(500);
+				expect(res).to.have.status(403);
 				done();
 			});
 	});
 });
 
-// GET ALL CHARACTERS
-describe('get all characters: ',()=>{
+
+// GET ALL STORED DNA 
+describe('get all dna with mutation: ',()=>{
 	it('should get all characters', (done) => {
 		chai.request(url)
-			.get('/api/v1/characters')
+			.get('/api/v1/mutation')
 			.end( function(err,res){
 				console.log(res.body)
 				expect(res).to.have.status(200);
@@ -49,58 +47,16 @@ describe('get all characters: ',()=>{
 	});
 });
 
-// GET SPECIFIC CHARACTER
-describe('get the character with previously inserted id',()=>{
-	it('should get the country with id:'+inserted_id, (done) => {
+// GET STADISTICS
+describe('get all dna with mutation: ',()=>{
+	it('should get all characters', (done) => {
 		chai.request(url)
-			.get('/api/v1/characters/'+inserted_id)
+			.get('/api/v1/stats')
 			.end( function(err,res){
 				console.log(res.body)
-				expect(res.body).to.have.property('_id').to.be.equal(inserted_id);
 				expect(res).to.have.status(200);
 				done();
 			});
 	});
 });
 
-// UPDATE SPECIFIC CHARACTER
-describe('update the title of previously inserted character ',()=>{
-	it('should update a specific title of character', (done) => {
-		chai.request(url)
-            .put('/api/v1/characters/'+inserted_id)
-            .send({title: "David Camhi de la Tejera"})
-			.end( function(err,res){
-				console.log(res.body)
-				expect(res.body).to.have.property('title').to.be.equal("David Camhi de la Tejera");
-				expect(res).to.have.status(200);
-				done();
-			});
-	});
-});
-
-// DELETE A CHARACTER
-describe('delete the character with previously inserted id'+inserted_id,()=>{
-	it('should delete the character', (done) => {
-		chai.request(url)
-			.get('/api/v1/characters')
-			.end( function(err,res){
-				console.log(res.body)
-				expect(res.body).to.have.lengthOf(1241);
-				expect(res).to.have.status(200);
-				chai.request(url)
-					.del('/api/v1/characters/'+inserted_id)
-					.end( function(err,res){
-						console.log(res.body)
-						expect(res).to.have.status(204);
-						chai.request(url)
-                            .get('/api/v1/characters')
-                            .end( function(err,res){
-								console.log(res.body)
-								expect(res.body).to.have.lengthOf(1240);
-								expect(res).to.have.status(200);
-								done();
-						});
-					});
-			});
-	});
-});
